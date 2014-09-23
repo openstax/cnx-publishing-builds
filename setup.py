@@ -37,5 +37,7 @@ setup(
         'cnxport': [],
         },
     entry_points="""\
+    [paste.app_factory]
+    main = cnxport.main:main
     """,
     )

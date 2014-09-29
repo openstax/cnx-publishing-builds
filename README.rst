@@ -69,6 +69,30 @@ contains the build identifier.
 :/builds/{id}: Responds with information about the build using the given
     build ``id``.
 
+Developer Notes
+---------------
+
+Sharing a filesystem
+~~~~~~~~~~~~~~~~~~~~
+
+Transformation services works on the assumption that this web application
+and all task slave processes have access to a shared filesystem. The shared
+filesystem contains the artifacts of the build, which are the results of
+the tasks in cnx-transforms.
+
+The shared filesystem space allows this application and the tasks to read and
+write common files. It is import to this application for read purposes,
+which includes providing a way to download the artifact(s) after a successful
+build.
+
+Note: The originally narrow focus for creating export files from
+transformation was to make them available for CNX Archive. Thus making it
+unnecessary for transformation services to provide downloadable artifacts.
+However, other cases, such as preview before publish, will need a location
+where the artifact can be downloaded. This is why the artifact download
+routes exist and the reason this application needs access to the shared
+filesystem.
+
 License
 -------
 

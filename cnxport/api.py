@@ -5,6 +5,7 @@
 # Public License version 3 (AGPLv3).
 # See LICENCE.txt for details.
 # ###
+from cnxtransforms.main import app as celery_app
 from cnxtransforms.tasks import (
     make_epub, make_pdf, make_zip,
     )
@@ -67,3 +68,27 @@ def create_zip(request):
     url = request.route_url('builds', id=result.id)
     request.response.status = '202 Accepted'
     return {'url': url, 'id': result.id}
+
+
+@view_config(route_name='builds', request_method='GET', renderer='json')
+def get_build(request):
+    """Retrieve information about the build. This includes the state of the
+    build and the resulting artifacts list.
+    """
+    task_id = request.matchdict['id']
+    result = celery_app.AsyncResult(task_id)
+
+    is_ready = result.ready()
+    is_success = result.successful()
+    info = {
+        'is_finished': is_ready,
+        'state': result.state,
+        }
+    if is_ready and is_success:
+        # TODO This needs to be changed. The results will be absolute paths
+        #      as they appear on the filesystem. Change to a set of JSON
+        #      bits that contain the filename and a full URL to download the
+        #      artifact (i.e. /builds/{id}/artifacts/{idx}/{filename})
+        info['artifacts'] = result.result
+
+    return info

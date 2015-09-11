@@ -21,24 +21,24 @@ if not IS_PY3:
     tests_require.append('mock')
 
 setup(
-    name='cnx-port',
+    name='cnx-publishing-builds',
     version='0.1',
     author='Connexions team',
     author_email='info@cnx.org',
-    url="https://github.com/connexions/cnx-port",
+    url="https://github.com/connexions/cnx-publishing-builds",
     license='AGPL, See also LICENSE.txt',
     description=description,
     install_requires=install_requires,
     tests_require=tests_require,
     extras_require=extras_require,
-    test_suite='cnxport.tests',
+    test_suite='cnxpublishingbuilds.tests',
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'cnxport': [],
+        'cnxpublishingbuilds': [],
         },
     entry_points="""\
     [paste.app_factory]
-    main = cnxport.main:main
+    main = cnxpublishingbuilds.main:main
     """,
     )

@@ -9,7 +9,7 @@ from pyramid.config import Configurator
 
 
 __version__ = '0.1'
-__name__ = 'cnxport'
+__name__ = 'cnxpublishingbuilds'
 
 
 def declare_routes(config):
@@ -36,5 +36,5 @@ def main(global_config, **settings):
     init_celery(config)
     declare_routes(config)
 
-    config.scan(ignore='cnxport.tests')
+    config.scan(ignore='cnxpublishingbuilds.tests')
     return config.make_wsgi_app()

@@ -7,7 +7,7 @@
 # ###
 from cnxtransforms.main import app as celery_app
 from cnxtransforms.tasks import (
-    make_epub, make_pdf, make_zip,
+    make_styled_epub, make_pdf, make_zip,
     )
 from pyramid import httpexceptions
 from pyramid.view import view_config

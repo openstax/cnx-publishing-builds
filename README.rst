@@ -88,10 +88,10 @@ build.
 Note: The originally narrow focus for creating export files from
 transformation was to make them available for CNX Archive. Thus making it
 unnecessary for transformation services to provide downloadable artifacts.
-However, other cases, such as preview before publish, will need a location
-where the artifact can be downloaded. This is why the artifact download
-routes exist and the reason this application needs access to the shared
-filesystem.
+However, other cases, such as preview before publish, will need a secured,
+non public location where the artifact can be downloaded. This is why the
+artifact download routes exist and the reason this application needs access
+to the shared filesystem.
 
 License
 -------
